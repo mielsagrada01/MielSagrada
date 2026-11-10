@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Esta línea hace que la página se adapte a celulares -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Miel Sagrada </title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===== 1. BARRA SUPERIOR: cambia el texto a tu gusto ===== -->
+<div class="aviso">Envíos a todo el país · Paga seguro en línea</div>
+
+<!-- ===== 2. ENCABEZADO: menú, logo, buscador, cuenta y carrito ===== -->
+<header class="header">
+  <button class="icono solo-movil" id="btnMenu" aria-label="Abrir menú">☰</button>
+  <a href="#" class="logo">Tu Marca</a> <!-- Cambia por tu logo: <img src="img/logo.png" alt="Logo"> -->
+  <div class="acciones">
+    <input type="search" id="buscador" placeholder="Buscar bolso…" aria-label="Buscar">
+    <button class="icono" id="btnCuenta" aria-label="Mi cuenta">👤<span id="nombreUsuario"></span></button>
+    <button class="icono" id="btnCarrito" aria-label="Ver carrito">🛍️<span id="contador" class="badge">0</span></button>
+  </div>
+</header>
+
+<!-- Menú de categorías: data-cat debe coincidir con la "categoria" de cada producto en script.js -->
+<nav class="menu" id="menu">
+  <button data-cat="todos" class="activo">Todos</button>
+  <button data-cat="bandoleras">Bandoleras</button>
+  <button data-cat="tote">Tote</button>
+  <button data-cat="mochilas">Mochilas</button>
+  <button data-cat="clutch">Clutch</button>
+</nav>
+
+<!-- ===== 3. BANNER CON MOVIMIENTO (se mueve solo cada 5 segundos) =====
+     Para cambiar las fotos: edita la ruta en --img:url('img/...') -->
+<section class="slider" id="slider">
+  <div class="slide activo" style="--img:url('ja.jpeg')">
+    <div class="texto"><span>Nueva colección</span><h1>Aura</h1></div>
+  </div>
+  <div class="slide" style="--img:url('img/jaja.jpeg')">
+    <div class="texto"><span>Hechos a mano</span><h1>Bandoleras</h1></div>
+  </div>
+  <div class="slide" style="--img:url('img/jo.jpeg')">
+    <div class="texto"><span>Hasta 30% de descuento</span><h1>Sale</h1></div>
+  </div>
+  <button class="flecha izq" id="prev" aria-label="Anterior">‹</button>
+  <button class="flecha der" id="next" aria-label="Siguiente">›</button>
+  <div class="puntos" id="puntos"></div>
+</section>
+
+<!-- ===== 4. PRODUCTOS: se llenan solos desde script.js ===== -->
+<main class="seccion">
+  <h2>Lo nuevo</h2>
+  <div class="grid" id="grid"></div>
+</main>
+
+<!-- ===== 5. PIE DE PÁGINA con redes sociales ===== -->
+<footer class="footer">
+  <p>Síguenos y escríbenos</p>
+  <div class="redes">
+    <a id="linkWhatsapp" target="_blank" rel="noopener">WhatsApp</a>
+    <a id="linkInstagram" target="_blank" rel="noopener">Instagram</a>
+  </div>
+  <small>© 2026 Tu Marca. Todos los derechos reservados.</small>
+</footer>
+
+<!-- Botón flotante de WhatsApp (siempre visible) -->
+<a id="wsFlotante" class="ws-flotante" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">💬</a>
+
+<!-- ===== 6. VENTANA DE INICIO DE SESIÓN / REGISTRO ===== -->
+<div class="modal" id="modalCuenta">
+  <form class="caja" id="formCuenta">
+    <button type="button" class="cerrar" data-cerrar>✕</button>
+    <h2 id="tituloCuenta">Iniciar sesión</h2>
+    <input id="cNombre" placeholder="Nombre completo" hidden>
+    <input id="cCorreo" type="email" placeholder="Correo" required>
+    <input id="cClave" type="password" placeholder="Contraseña (mín. 6 caracteres)" minlength="6" required>
+    <p class="msg" id="msgCuenta"></p>
+    <button class="btn" id="btnEnviarCuenta">Entrar</button>
+    <a href="#" id="cambiarModo">¿No tienes cuenta? Regístrate</a>
+  </form>
+</div>
+
+<!-- ===== 7. CARRITO (panel lateral) ===== -->
+<aside class="carrito" id="carrito">
+  <div class="carrito-top"><h2>Tu carrito</h2><button class="cerrar" data-cerrar>✕</button></div>
+  <div id="items" class="items"></div>
+  <div class="carrito-pie">
+    <p class="total">Total: <strong id="total">$0</strong></p>
+    <button class="btn" id="btnPagar">Ir a pagar</button>
+  </div>
+</aside>
+
+<!-- ===== 8. VENTANA DE PAGO ===== -->
+<div class="modal" id="modalPago">
+  <form class="caja" id="formPago">
+    <button type="button" class="cerrar" data-cerrar>✕</button>
+    <h2>Finalizar compra</h2>
+    <input id="pNombre" placeholder="Nombre" required>
+    <input id="pDireccion" placeholder="Dirección de entrega" required>
+    <input id="pCiudad" placeholder="Ciudad" required>
+    <input id="pTelefono" type="tel" placeholder="Teléfono" required>
+    <select id="pMetodo">
+      <option value="tarjeta">Tarjeta crédito/débito</option>
+      <option value="pse">PSE</option>
+      <option value="contraentrega">Contra entrega</option>
+      <option value="whatsapp">Pedir por WhatsApp</option>
+    </select>
+    <p class="total">Total: <strong id="totalPago">$0</strong></p>
+    <p class="msg" id="msgPago"></p>
+    <button class="btn">Confirmar pedido</button>
+  </form>
+</div>
+
+<div class="fondo" id="fondo"></div>
+<script src="script.js"></script>
+</body>
+</html>
